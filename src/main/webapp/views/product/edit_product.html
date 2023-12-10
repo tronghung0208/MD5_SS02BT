@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Document</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+</head>
+<body>
+<div class="box-all">
+    <div class="container">
+        <form action="/update-product" method="post" th:object="${editProduct}">
+            <input type="hidden" th:field="${editProduct.id}"/>
+            <div class="wrapper_student">
+                <h2>Thông tin sản phẩm</h2>
+                <div class="form_group">
+                    <!-- thông tin họ tên -->
+                    <label for="name">Tên sản phẩm</label>
+                    <input type="text" id="name" th:field="${editProduct.productName}"/>
+                </div>
+                <div class="form_group form">
+                    <!-- thông tin email-->
+                    <label for="email">Giá sản phẩm</label>
+                    <input type="text" id="email" th:field="${editProduct.price}"/>
+                </div>
+                <div class="form_group form">
+                    <!-- thông tin số điện thoại -->
+                    <label>Tên danh mục</label>
+                    <select style="  width: 80%; padding: 6px 12px; border: solid 1px black; border-radius: 5px;" th:field="${editProduct.category.id}">
+                        <option th:each="item:${categoryList}" th:value="${item.id}" th:text="${item.name}" th:selected="${editProduct.category.id == item.id}">
+                        </option>
+                    </select>
+                </div>
+                <!-- Phần submit button -->
+                <div class="button">
+                    <button class="btn btn_primary save-student" type="submit">
+                        Update
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+</div>
+
+</body>
+</html>
